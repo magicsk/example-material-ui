@@ -10,14 +10,14 @@ import {
 import './index.css'
 
 ReactDOM.render(
-  <ErrorBoundary>
-    <Router>
+  <Router>
+    <ErrorBoundary>
       <LocaleContextProvider>
         <ThemeContextProvider>
           <App />
         </ThemeContextProvider>
       </LocaleContextProvider>
-    </Router>
-  </ErrorBoundary>,
+    </ErrorBoundary>
+  </Router>,
   document.getElementById('root')
 )

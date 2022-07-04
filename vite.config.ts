@@ -5,6 +5,9 @@ import path from 'path'
 
 export default ({ command, mode }) => {
   return defineConfig({
+    build: {
+      minify: false
+    },
     optimizeDeps: {
       exclude: ['@iteria-app/wysiwyg'],
       include: ['@iteria-app/component-templates'],
