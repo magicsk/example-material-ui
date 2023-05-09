@@ -1,0 +1,92 @@
+query vak_pracovnik($distinct_on: [vak_pracovnik_select_column!], $limit: Int = 20, $offset: Int = 0, $order_by: [vak_pracovnik_order_by!] = {id: desc}, $where: [vak_pracovnik_bool_exp!]) {
+  vak_pracovnik(
+    distinct_on: $distinct_on
+    limit: $limit
+    offset: $offset
+    order_by: $order_by
+    where: {platny: {_eq: true}, _and: $where}
+  ) {
+    ...vak_pracovnikList
+  }
+}
+
+query vak_pracovnik_by_pk($id: Int!) {
+  vak_pracovnik_by_pk(id: $id) {
+    ...vak_pracovnikCrud
+  }
+}
+
+mutation delete_vak_pracovnik($where: vak_pracovnik_bool_exp!) {
+  delete_vak_pracovnik(where: $where) {
+    returning {
+      ...vak_pracovnikCrud
+    }
+    affected_rows
+  }
+}
+
+mutation delete_vak_pracovnik_by_pk($id: Int!) {
+  delete_vak_pracovnik_by_pk(id: $id) {
+    ...vak_pracovnikCrud
+  }
+}
+
+mutation insert_vak_pracovnik($vak_pracovnik: [vak_pracovnik_insert_input!]!, $on_conflict: vak_pracovnik_on_conflict) {
+  insert_vak_pracovnik(objects: $vak_pracovnik, on_conflict: $on_conflict) {
+    returning {
+      ...vak_pracovnikCrud
+    }
+    affected_rows
+  }
+}
+
+mutation insert_vak_pracovnik_one($vak_pracovnik: vak_pracovnik_insert_input!, $on_conflict: vak_pracovnik_on_conflict) {
+  insert_vak_pracovnik_one(object: $vak_pracovnik, on_conflict: $on_conflict) {
+    ...vak_pracovnikCrud
+  }
+}
+
+mutation update_vak_pracovnik($_inc: vak_pracovnik_inc_input, $vak_pracovnik: vak_pracovnik_set_input, $where: vak_pracovnik_bool_exp!) {
+  update_vak_pracovnik(_inc: $_inc, _set: $vak_pracovnik, where: $where) {
+    returning {
+      ...vak_pracovnikCrud
+    }
+    affected_rows
+  }
+}
+
+mutation update_vak_pracovnik_by_pk($_inc: vak_pracovnik_inc_input, $vak_pracovnik: vak_pracovnik_set_input, $pk_columns: vak_pracovnik_pk_columns_input!) {
+  update_vak_pracovnik_by_pk(
+    _inc: $_inc
+    _set: $vak_pracovnik
+    pk_columns: $pk_columns
+  ) {
+    ...vak_pracovnikCrud
+  }
+}
+
+mutation update_vak_pracovnik_many($updates: [vak_pracovnik_updates!]!) {
+  update_vak_pracovnik_many(updates: $updates) {
+    returning {
+      ...vak_pracovnikCrud
+    }
+    affected_rows
+  }
+}
+
+fragment vak_pracovnikCrud on vak_pracovnik {
+  ...vak_pracovnik
+  smena2pracovnik(order_by: {id: asc}, where: {platny: {_eq: true}}) {
+    ...vak_pracovnik_smena2pracovnik
+    smena {
+      ...vak_pracovnik_smena2pracovnik_smena
+      smena_typ {
+        ...vak_pracovnik_smena2pracovnik_smena_smena_typ
+      }
+    }
+  }
+}
+
+fragment vak_pracovnikList on vak_pracovnik {
+  ...vak_pracovnik
+}

@@ -1,0 +1,7 @@
+fragment vak_uloha_typ on vak_uloha_typ {
+  id
+  __typename
+  name
+  platny
+  vstup
+}

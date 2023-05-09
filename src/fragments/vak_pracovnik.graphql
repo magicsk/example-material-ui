@@ -1,0 +1,26 @@
+fragment vak_pracovnik on vak_pracovnik {
+  id
+  __typename
+  name
+  platny
+}
+
+fragment vak_pracovnik_smena2pracovnik on vak_smena2pracovnik {
+  name
+  id
+  __typename
+  platny
+}
+
+fragment vak_pracovnik_smena2pracovnik_smena on vak_smena {
+  termin_od
+  id
+  __typename
+  termin_do
+}
+
+fragment vak_pracovnik_smena2pracovnik_smena_smena_typ on vak_smena_typ {
+  name
+  id
+  __typename
+}

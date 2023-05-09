@@ -26,6 +26,7 @@ interface Props {
   checkboxes?: boolean
   radio?: boolean
   rowPath?: string
+  toExclude?: any[]
 }
 interface IViewProps {
   data: EntitiesQuery
@@ -36,6 +37,7 @@ interface IViewProps {
   radio?: boolean
   selectionModel?: MutableRefObject<GridSelectionModel>
   filterProps?: FilterProps
+  toExclude?: any[]
 }
 interface IEnitityListContainerProps {
   View: React.FC<IViewProps>
@@ -49,6 +51,7 @@ export const LookupDialog: React.FC<Props> = ({
   data,
   checkboxes,
   radio,
+  toExclude
 }) => {
   const [open, setOpen] = React.useState(false)
   const selectionModel = useRef<GridSelectionModel>([])
@@ -103,6 +106,7 @@ export const LookupDialog: React.FC<Props> = ({
                   radio={radio}
                   selectionModel={selectionModel}
                   filterProps={filterProps}
+                  toExclude={toExclude}
                 />
               )}
             />

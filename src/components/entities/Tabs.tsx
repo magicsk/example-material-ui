@@ -24,7 +24,7 @@ const Tabs = ({ tabs, selectedTab, handleTabChange }: Props): JSX.Element => {
           <MuiTabs
             value={selectedTab}
             onChange={handleTabChange}
-            aria-label="Cmdb views"
+            aria-label="VakUloha views"
           >
             {tabs?.map((tab) => {
               return (

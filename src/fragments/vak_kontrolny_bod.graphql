@@ -1,0 +1,6 @@
+fragment vak_kontrolny_bod on vak_kontrolny_bod {
+  id
+  __typename
+  kod
+  name
+}

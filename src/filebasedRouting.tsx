@@ -18,6 +18,7 @@ const routes = Object.keys(ROUTES).map((route) => {
   return { path, component: ROUTES[route].default }
 })
 
+
 export const FilebasedRoutes = () => {
   const App = preserved?.['_app'] || Fragment
   const NotFound = preserved?.['404'] || Fragment

@@ -1,6 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { Badge, Box, Divider, IconButton, styled, Toolbar } from '@mui/material'
+import {
+  Badge,
+  Box,
+  Divider,
+  Grid,
+  IconButton,
+  styled,
+  Toolbar,
+} from '@mui/material'
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from '@mui/material/AppBar'
 import MenuIcon from '@mui/icons-material/Menu'
 import NotificationsIcon from '@mui/icons-material/NotificationsOutlined'
@@ -52,43 +60,31 @@ const TopBar = ({
   return (
     <AppBar open={navBarOpen} {...rest}>
       <Toolbar>
-        <Logo />
-
-        <Box
-          sx={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            width: '100%',
-          }}
+        <Grid
+          container
+          alignItems={'center'}
+          justifyContent={'space-between'}
+          wrap="nowrap"
         >
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              margin: '0 auto',
-            }}
-          >
-            <MenuItems items={calculateMenuItems(Users, newRoutes)} />
-          </Box>
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-end',
-              alignItems: 'center',
-            }}
-          >
-            <IconButton>
-              <Badge badgeContent={1} color="warning" variant="dot">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
-            <Divider orientation="vertical" sx={{ height: '32px' }} />
-            <LocaleSwitch locales={locales} />
-            <UserProfile sourceUrl={window.location.pathname.toString()} />
-          </Box>
-        </Box>
+          <Logo />
+          <MenuItems items={calculateMenuItems(Users, newRoutes)} />
+          <Grid item wrap="nowrap">
+            <Grid
+              container
+              alignItems={'center'}
+              wrap="nowrap"
+            >
+              <IconButton>
+                <Badge badgeContent={1} color="warning" variant="dot">
+                  <NotificationsIcon />
+                </Badge>
+              </IconButton>
+              <Divider orientation="vertical" sx={{ height: '32px' }} />
+              <LocaleSwitch locales={locales} />
+              <UserProfile sourceUrl={window.location.pathname.toString()} />
+            </Grid>
+          </Grid>
+        </Grid>
       </Toolbar>
     </AppBar>
   )

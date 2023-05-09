@@ -7,7 +7,7 @@ import {
   ThemeProvider,
   I18nProvider,
   useLocale,
-  authExchange,
+  authExchange
 } from '@iteria-app/component-templates'
 import { IntlProvider } from 'react-intl'
 import {
@@ -17,7 +17,7 @@ import {
   dedupExchange,
   cacheExchange,
   fetchExchange,
-  ClientOptions,
+  ClientOptions
 } from 'urql'
 import PropTypes from 'prop-types'
 import '../src/mixins/chartjs'
@@ -32,6 +32,7 @@ const graphqlcodegenDataProvider = new GraphqlcodegenDataProvider(
 )
 
 const App = () => {
+  console.log("routes", routes)
   const routing = useRoutes(routes)
   const locale = useLocale()
   const messagesObject = messages(locale)
@@ -44,8 +45,8 @@ const App = () => {
       debugExchange,
       cacheExchange,
       authExchange(),
-      fetchExchange,
-    ],
+      fetchExchange
+    ]
   }
   const superClient = createClient({
     url: import.meta.env.VITE_HASURA_GRAPHQL_ENDPOINT as string,
@@ -54,14 +55,14 @@ const App = () => {
     fetchOptions: {
       headers: {
         'x-hasura-admin-secret': import.meta.env
-          .VITE_HASURA_GRAPHQL_SECRET as string,
-      },
-    },
+          .VITE_HASURA_GRAPHQL_SECRET as string
+      }
+    }
   })
 
   let client = createClient(clientOptions)
 
-  if (import.meta.env.VITE_AUTH_MODE === 'admin_secret') client = superClient
+  client = superClient
 
   return (
     <DataContext.Provider value={graphqlcodegenDataProvider}>
@@ -82,7 +83,7 @@ const App = () => {
 
 App.propTypes = {
   locale: PropTypes.string,
-  messages: PropTypes.object,
+  messages: PropTypes.object
 }
 
 export default App

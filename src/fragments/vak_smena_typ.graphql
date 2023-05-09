@@ -1,0 +1,18 @@
+fragment vak_smena_typ on vak_smena_typ {
+  id
+  name
+  class
+  tolerancia
+  __typename
+  vstup
+  platny
+}
+
+fragment vak_smena_typ_predpis_obhliadka on vak_predpis_obhliadka {
+  name
+  id
+  __typename
+  poradie
+  termin_cas
+  termin_cas_do
+}

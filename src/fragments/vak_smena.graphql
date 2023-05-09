@@ -1,0 +1,89 @@
+fragment vak_smena on vak_smena {
+  id
+  __typename
+  termin_od
+  termin_do
+  ok
+  informacia_teren
+  informacia_kancelaria
+  termin_od
+  platny
+}
+
+fragment vak_smena_obhliadka_sumar on vak_obhliadka_sumar {
+  predpisane
+  id
+  __typename
+  ok
+  predpis_obhliadka_fk
+  smena_fk
+}
+
+fragment vak_smena_smena_typ on vak_smena_typ {
+  name
+  id
+  __typename
+  vstup
+  class
+  platny
+  tolerancia
+}
+
+fragment vak_smena_kontrola on vak_kontrola {
+  smena_fk
+  id
+  __typename
+  termin_cas
+  termin_datum
+}
+
+fragment vak_smena_obhliadka_sumar_predpis_obhliadka on vak_predpis_obhliadka {
+  termin_cas_do
+  id
+  __typename
+  termin_cas
+  poradie
+  name
+}
+
+fragment vak_smena_smena2pracovnik_pracovnik on vak_pracovnik {
+  name
+  id
+  __typename
+}
+
+fragment vak_smena_uloha on vak_uloha {
+  done
+  id
+  __typename
+  name
+  platny
+  poradie
+  vstup_cislo
+  vstup_text
+}
+
+fragment vak_smena_smena2pracovnik on vak_smena2pracovnik {
+  id
+  __typename
+  name
+  platny
+}
+
+fragment vak_smena_uloha_kontrolny_bod on vak_kontrolny_bod {
+  name
+  id
+  __typename
+}
+
+fragment vak_smena_uloha_uloha_typ on vak_uloha_typ {
+  name
+  id
+  __typename
+}
+
+fragment vak_smena_obhliadka_sumar_aggregate_aggregate_sum on vak_obhliadka_sumar_sum_fields {
+  ok
+  predpisane
+  __typename
+}

@@ -1,0 +1,86 @@
+query vak_kontrolny_bod($distinct_on: [vak_kontrolny_bod_select_column!], $limit: Int = 20, $offset: Int = 0, $order_by: [vak_kontrolny_bod_order_by!] = {id: desc}, $where: vak_kontrolny_bod_bool_exp) {
+  vak_kontrolny_bod(
+    distinct_on: $distinct_on
+    limit: $limit
+    offset: $offset
+    order_by: $order_by
+    where: $where
+  ) {
+    ...vak_kontrolny_bodList
+  }
+}
+
+query vak_kontrolny_bod_by_pk($id: Int!) {
+  vak_kontrolny_bod_by_pk(id: $id) {
+    ...vak_kontrolny_bodCrud
+  }
+}
+
+mutation delete_vak_kontrolny_bod($where: vak_kontrolny_bod_bool_exp!) {
+  delete_vak_kontrolny_bod(where: $where) {
+    returning {
+      ...vak_kontrolny_bodCrud
+    }
+    affected_rows
+  }
+}
+
+mutation delete_vak_kontrolny_bod_by_pk($id: Int!) {
+  delete_vak_kontrolny_bod_by_pk(id: $id) {
+    ...vak_kontrolny_bodCrud
+  }
+}
+
+mutation insert_vak_kontrolny_bod($vak_kontrolny_bod: [vak_kontrolny_bod_insert_input!]!, $on_conflict: vak_kontrolny_bod_on_conflict) {
+  insert_vak_kontrolny_bod(objects: $vak_kontrolny_bod, on_conflict: $on_conflict) {
+    returning {
+      ...vak_kontrolny_bodCrud
+    }
+    affected_rows
+  }
+}
+
+mutation insert_vak_kontrolny_bod_one($vak_kontrolny_bod: vak_kontrolny_bod_insert_input!, $on_conflict: vak_kontrolny_bod_on_conflict) {
+  insert_vak_kontrolny_bod_one(
+    object: $vak_kontrolny_bod
+    on_conflict: $on_conflict
+  ) {
+    ...vak_kontrolny_bodCrud
+  }
+}
+
+mutation update_vak_kontrolny_bod($_inc: vak_kontrolny_bod_inc_input, $vak_kontrolny_bod: vak_kontrolny_bod_set_input, $where: vak_kontrolny_bod_bool_exp!) {
+  update_vak_kontrolny_bod(_inc: $_inc, _set: $vak_kontrolny_bod, where: $where) {
+    returning {
+      ...vak_kontrolny_bodCrud
+    }
+    affected_rows
+  }
+}
+
+mutation update_vak_kontrolny_bod_by_pk($_inc: vak_kontrolny_bod_inc_input, $vak_kontrolny_bod: vak_kontrolny_bod_set_input, $pk_columns: vak_kontrolny_bod_pk_columns_input!) {
+  update_vak_kontrolny_bod_by_pk(
+    _inc: $_inc
+    _set: $vak_kontrolny_bod
+    pk_columns: $pk_columns
+  ) {
+    ...vak_kontrolny_bodCrud
+  }
+}
+
+mutation update_vak_kontrolny_bod_many($updates: [vak_kontrolny_bod_updates!]!) {
+  update_vak_kontrolny_bod_many(updates: $updates) {
+    returning {
+      ...vak_kontrolny_bodCrud
+    }
+    affected_rows
+  }
+}
+
+fragment vak_kontrolny_bodCrud on vak_kontrolny_bod {
+  ...vak_kontrolny_bod
+}
+
+fragment vak_kontrolny_bodList on vak_kontrolny_bod {
+  ...vak_kontrolny_bod
+}

@@ -1,0 +1,34 @@
+fragment vak_uloha on vak_uloha {
+  id
+  __typename
+  done
+  poradie
+  vstup_cislo
+  vstup_text
+  platny
+}
+
+fragment vak_uloha_smena on vak_smena {
+  termin_od
+  id
+  __typename
+  termin_do
+}
+
+fragment vak_uloha_smena_smena_typ on vak_smena_typ {
+  name
+  id
+  __typename
+}
+
+fragment vak_uloha_kontrolny_bod on vak_kontrolny_bod {
+  name
+  id
+  __typename
+}
+
+fragment vak_uloha_uloha_typ on vak_uloha_typ {
+  name
+  id
+  __typename
+}

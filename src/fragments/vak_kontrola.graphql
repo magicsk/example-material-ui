@@ -1,0 +1,9 @@
+fragment vak_kontrola on vak_kontrola {
+  id
+  __typename
+  ok_predpis_kontrola_fk
+  ok_termin
+  termin_cas
+  termin_datum
+  platny
+}

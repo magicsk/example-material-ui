@@ -1,0 +1,140 @@
+query vak_smena($distinct_on: [vak_smena_select_column!], $limit: Int = 20, $offset: Int = 0, $order_by: [vak_smena_order_by!] = {id: desc}, $where: [vak_smena_bool_exp!]) {
+  vak_smena(
+    distinct_on: $distinct_on
+    limit: $limit
+    offset: $offset
+    order_by: $order_by
+    where: {platny: {_eq: true}, _and: $where}
+  ) {
+    ...vak_smenaList
+  }
+  vak_pracovnik(where: {platny: {_eq: true}}) {
+    name
+    id
+  }
+  vak_smena_typ(where: {platny: {_eq: true}}) {
+    id
+    name
+  }
+}
+
+query vak_smena_by_pk($id: Int!) {
+  vak_smena_by_pk(id: $id) {
+    ...vak_smenaCrud
+  }
+  vak_uloha_typ(where: {platny: {_eq: true}}) {
+    id
+    name
+  }
+}
+
+query vak_smena_create {
+  vak_uloha_typ(where: {platny: {_eq: true}}) {
+    id
+    name
+  }
+}
+
+mutation delete_vak_smena($where: vak_smena_bool_exp!) {
+  delete_vak_smena(where: $where) {
+    returning {
+      ...vak_smenaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation delete_vak_smena_by_pk($id: Int!) {
+  delete_vak_smena_by_pk(id: $id) {
+    ...vak_smenaCrud
+  }
+}
+
+mutation insert_vak_smena($vak_smena: [vak_smena_insert_input!]!, $on_conflict: vak_smena_on_conflict) {
+  insert_vak_smena(objects: $vak_smena, on_conflict: $on_conflict) {
+    returning {
+      ...vak_smenaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation insert_vak_smena_one($vak_smena: vak_smena_insert_input!, $on_conflict: vak_smena_on_conflict) {
+  insert_vak_smena_one(object: $vak_smena, on_conflict: $on_conflict) {
+    ...vak_smenaCrud
+  }
+}
+
+mutation update_vak_smena($_inc: vak_smena_inc_input, $vak_smena: vak_smena_set_input, $where: vak_smena_bool_exp!) {
+  update_vak_smena(_inc: $_inc, _set: $vak_smena, where: $where) {
+    returning {
+      ...vak_smenaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation update_vak_smena_by_pk($_inc: vak_smena_inc_input, $vak_smena: vak_smena_set_input, $pk_columns: vak_smena_pk_columns_input!) {
+  update_vak_smena_by_pk(_inc: $_inc, _set: $vak_smena, pk_columns: $pk_columns) {
+    ...vak_smenaCrud
+  }
+}
+
+mutation update_vak_smena_many($updates: [vak_smena_updates!]!) {
+  update_vak_smena_many(updates: $updates) {
+    returning {
+      ...vak_smenaCrud
+    }
+    affected_rows
+  }
+}
+
+fragment vak_smenaCrud on vak_smena {
+  ...vak_smena
+  smena_typ {
+    ...vak_smena_smena_typ
+  }
+  obhliadka_sumar(order_by: {id: asc}) {
+    ...vak_smena_obhliadka_sumar
+    predpis_obhliadka {
+      ...vak_smena_obhliadka_sumar_predpis_obhliadka
+    }
+  }
+  uloha(order_by: {poradie: asc}) {
+    ...vak_smena_uloha
+    kontrolny_bod {
+      ...vak_smena_uloha_kontrolny_bod
+    }
+    uloha_typ {
+      ...vak_smena_uloha_uloha_typ
+    }
+  }
+  smena2pracovnik(order_by: {id: asc}, where: {platny: {_eq: true}}) {
+    ...vak_smena_smena2pracovnik
+    pracovnik {
+      ...vak_smena_smena2pracovnik_pracovnik
+    }
+  }
+}
+
+fragment vak_smenaList on vak_smena {
+  ...vak_smena
+  obhliadka_sumar(order_by: {id: asc}) {
+    ...vak_smena_obhliadka_sumar
+  }
+  smena_typ {
+    ...vak_smena_smena_typ
+  }
+  smena2pracovnik(order_by: {id: asc}) {
+    pracovnik {
+      ...vak_smena_smena2pracovnik_pracovnik
+    }
+  }
+  obhliadka_sumar_aggregate(order_by: {id: asc}) {
+    aggregate {
+      sum {
+        ...vak_smena_obhliadka_sumar_aggregate_aggregate_sum
+      }
+    }
+  }
+}

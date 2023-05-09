@@ -1,5 +1,5 @@
 import React from 'react'
-import { Navigate, RouteObject } from 'react-router-dom'
+import { Navigate, RouteObject } from 'react-router'
 import DashboardLayout from '../src/layouts/DashboardLayout'
 import NotFoundView from '../src/views/errors/NotFoundView'
 import {
@@ -12,10 +12,11 @@ import {
   shouldBeIndexRoute,
 } from '@iteria-app/component-templates'
 import * as generatedGraphql from './generated/graphql'
-import HomePage from './pages/home'
-import DashboardView from './pages/dashboard'
+// import HomePage from './pages/home'
+// import DashboardView from './pages/dashboard'
 
 export const filebasedRouting = import.meta.globEager('./pages/**/*.tsx')
+console.log("tabs", filebasedRouting)
 
 const INDEX_PAGE = 'index.tsx'
 
@@ -97,7 +98,10 @@ const detailMainRoutes = detailPaths.map((route) => {
 
 const createIndexChildrenPaths = (indexRoutePath: string) => {
   const childrenPaths = Object.keys(filebasedRouting).filter((route) => {
-    const a = route.includes(indexRoutePath)
+    const routeSplit = route.split('/')
+    const indexOfPages = routeSplit.indexOf('pages')
+    const routeEntityName = routeSplit?.[indexOfPages + 1]
+    const a = routeEntityName === indexRoutePath
     const b = !route.includes(INDEX_PAGE) && !route.includes('[id]')
     return a && b
   })
@@ -138,6 +142,8 @@ const indexRoutesWithChildren: RouteObject[] = onlyIndexRoutes.map(
         ),
       }
     })
+
+    console.log(indexRoute, childrenRoutes)
 
     return {
       ...indexRoute,
@@ -186,8 +192,8 @@ export const newRoutes = [
 ]
 
 const routing = generatePagesRoutes(generatedGraphql)
-routing.push({ path: 'dashboard', element: <DashboardView /> })
-routing.push({ path: 'home', element: <HomePage /> })
+// routing.push({ path: 'dashboard', element: <DashboardView /> })
+// routing.push({ path: 'home', element: <HomePage /> })
 
 const routes: RouteObject[] = [
   {
@@ -203,7 +209,7 @@ const routes: RouteObject[] = [
       { path: 'resetpassword', element: <ResetPWView /> },
       { path: 'signup', element: <SignupWithEmail /> },
       { path: '404', element: <NotFoundView /> },
-      { path: '/', element: <Navigate to="/app/home" /> },
+      { path: '/', element: <Navigate to="/app/vak_smena" /> },
       { path: '*', element: <NotFoundView /> },
     ],
   },

@@ -1,0 +1,91 @@
+query vak_uloha($distinct_on: [vak_uloha_select_column!], $limit: Int = 20, $offset: Int = 0, $order_by: [vak_uloha_order_by!] = {id: desc}, $where: [vak_uloha_bool_exp!]) {
+  vak_uloha(
+    distinct_on: $distinct_on
+    limit: $limit
+    offset: $offset
+    order_by: $order_by
+    where: {platny: {_eq: true}, _and: $where}
+  ) {
+    ...vak_ulohaList
+  }
+}
+
+query vak_uloha_by_pk($id: uuid!) {
+  vak_uloha_by_pk(id: $id) {
+    ...vak_ulohaCrud
+  }
+}
+
+mutation delete_vak_uloha($where: vak_uloha_bool_exp!) {
+  delete_vak_uloha(where: $where) {
+    returning {
+      ...vak_ulohaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation delete_vak_uloha_by_pk($id: uuid!) {
+  delete_vak_uloha_by_pk(id: $id) {
+    ...vak_ulohaCrud
+  }
+}
+
+mutation insert_vak_uloha($vak_uloha: [vak_uloha_insert_input!]!, $on_conflict: vak_uloha_on_conflict) {
+  insert_vak_uloha(objects: $vak_uloha, on_conflict: $on_conflict) {
+    returning {
+      ...vak_ulohaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation insert_vak_uloha_one($vak_uloha: vak_uloha_insert_input!, $on_conflict: vak_uloha_on_conflict) {
+  insert_vak_uloha_one(object: $vak_uloha, on_conflict: $on_conflict) {
+    ...vak_ulohaCrud
+  }
+}
+
+mutation update_vak_uloha($_inc: vak_uloha_inc_input, $vak_uloha: vak_uloha_set_input, $where: vak_uloha_bool_exp!) {
+  update_vak_uloha(_inc: $_inc, _set: $vak_uloha, where: $where) {
+    returning {
+      ...vak_ulohaCrud
+    }
+    affected_rows
+  }
+}
+
+mutation update_vak_uloha_by_pk($_inc: vak_uloha_inc_input, $vak_uloha: vak_uloha_set_input, $pk_columns: vak_uloha_pk_columns_input!) {
+  update_vak_uloha_by_pk(_inc: $_inc, _set: $vak_uloha, pk_columns: $pk_columns) {
+    ...vak_ulohaCrud
+  }
+}
+
+mutation update_vak_uloha_many($updates: [vak_uloha_updates!]!) {
+  update_vak_uloha_many(updates: $updates) {
+    returning {
+      ...vak_ulohaCrud
+    }
+    affected_rows
+  }
+}
+
+fragment vak_ulohaCrud on vak_uloha {
+  ...vak_uloha
+}
+
+fragment vak_ulohaList on vak_uloha {
+  ...vak_uloha
+  smena {
+    ...vak_uloha_smena
+    smena_typ {
+      ...vak_uloha_smena_smena_typ
+    }
+  }
+  kontrolny_bod {
+    ...vak_uloha_kontrolny_bod
+  }
+  uloha_typ {
+    ...vak_uloha_uloha_typ
+  }
+}
