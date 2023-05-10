@@ -1,10 +1,6 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@babylonjs/core': 5.21.0
-  '@babylonjs/gui': 5.21.0
-  '@babylonjs/inspector': 5.21.0
-  '@babylonjs/loaders': 5.21.0
   '@casl/ability': ^6.3.3
   '@casl/react': ^3.1.0
   '@date-io/date-fns': 2.15.0
@@ -64,10 +60,6 @@ specifiers:
   yup: ^0.29.3
 
 dependencies:
-  '@babylonjs/core': 5.21.0
-  '@babylonjs/gui': 5.21.0_@babylonjs+core@5.21.0
-  '@babylonjs/inspector': 5.21.0_wvwxnwbd6mwdrmjzkhajlv5hfm
-  '@babylonjs/loaders': 5.21.0_@babylonjs+core@5.21.0
   '@casl/ability': 6.4.0
   '@casl/react': 3.1.0_2o7nfeodi6iy2pry25b7rr5emq
   '@date-io/date-fns': 2.15.0
@@ -793,53 +785,6 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@babylonjs/core/5.21.0:
-    resolution: {integrity: sha512-kJrjFEMMzOPlSShbh8i3c6S48+LsUFDkiQNGc6rRP92kmFBxlsL7MC3tfdAiRPpXIr4rf0agYXFf9+P29brqTA==}
-    dependencies:
-      tslib: 2.4.1
-    dev: false
-
-  /@babylonjs/gui/5.21.0_@babylonjs+core@5.21.0:
-    resolution: {integrity: sha512-b0sPVwB98PbTGn3azNMGWiONtrHG2WmXOVkMjlpjJFz5DNvy5P1w6eVcWWRXjeQgc2LIaZ6susiNTgikUGcjYQ==}
-    peerDependencies:
-      '@babylonjs/core': ^5.0.0
-    dependencies:
-      '@babylonjs/core': 5.21.0
-      tslib: 2.4.1
-    dev: false
-
-  /@babylonjs/inspector/5.21.0_wvwxnwbd6mwdrmjzkhajlv5hfm:
-    resolution: {integrity: sha512-BZlPpdsW8tAQRssaUCGmF6MAbd5KWci4Ll6os0WwcukCDu7rgdLQOaRTaVTQlPSNA2H2lLVDopvpXqb34/qkVg==}
-    peerDependencies:
-      '@babylonjs/core': ^5.0.0
-      '@babylonjs/gui': ^5.0.0
-      '@babylonjs/gui-editor': ^5.0.0
-      '@babylonjs/loaders': ^5.0.0
-      '@babylonjs/materials': ^5.0.0
-      '@babylonjs/serializers': ^5.0.0
-      '@types/react': '>=16.7.3'
-      '@types/react-dom': '>=16.0.9'
-    dependencies:
-      '@babylonjs/core': 5.21.0
-      '@babylonjs/gui': 5.21.0_@babylonjs+core@5.21.0
-      '@babylonjs/loaders': 5.21.0_@babylonjs+core@5.21.0
-      '@fortawesome/fontawesome-svg-core': 6.4.0
-      '@fortawesome/free-regular-svg-icons': 6.4.0
-      '@fortawesome/free-solid-svg-icons': 6.4.0
-      '@types/react': 17.0.52
-      '@types/react-dom': 17.0.18
-    dev: false
-
-  /@babylonjs/loaders/5.21.0_@babylonjs+core@5.21.0:
-    resolution: {integrity: sha512-ioKlZofZ9LpD4usneyygkryLkcaw3+wMaPNnEoeKesyVDD2l65q1pNX517h7xRu88m3xJ5oy5ek8M8OkeqjVGw==}
-    peerDependencies:
-      '@babylonjs/core': ^5.0.0
-      babylonjs-gltf2interface: ^5.0.0
-    dependencies:
-      '@babylonjs/core': 5.21.0
-      tslib: 2.4.1
-    dev: false
-
   /@casl/ability/6.4.0:
     resolution: {integrity: sha512-Z2bi5QdijspY/t4OhVjIWXV6kuKhZtZFI2nNthrcWEs9CtR2jkdDCjiqptFGlRBMTSZWJTCSVovtZfOzkGhhIA==}
     dependencies:
@@ -1539,36 +1484,6 @@ packages:
       intl-messageformat: 9.13.0
       tslib: 2.4.1
       typescript: 4.5.4
-    dev: false
-
-  /@fortawesome/fontawesome-common-types/6.4.0:
-    resolution: {integrity: sha512-HNii132xfomg5QVZw0HwXXpN22s7VBHQBv9CeOu9tfJnhsWQNd2lmTNi8CSrnw5B+5YOmzu1UoPAyxaXsJ6RgQ==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dev: false
-
-  /@fortawesome/fontawesome-svg-core/6.4.0:
-    resolution: {integrity: sha512-Bertv8xOiVELz5raB2FlXDPKt+m94MQ3JgDfsVbrqNpLU9+UE2E18GKjLKw+d3XbeYPqg1pzyQKGsrzbw+pPaw==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.4.0
-    dev: false
-
-  /@fortawesome/free-regular-svg-icons/6.4.0:
-    resolution: {integrity: sha512-ZfycI7D0KWPZtf7wtMFnQxs8qjBXArRzczABuMQqecA/nXohquJ5J/RCR77PmY5qGWkxAZDxpnUFVXKwtY/jPw==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.4.0
-    dev: false
-
-  /@fortawesome/free-solid-svg-icons/6.4.0:
-    resolution: {integrity: sha512-kutPeRGWm8V5dltFP1zGjQOEAzaLZj4StdQhWVZnfGFCvAPVvHh8qk5bRrU4KXnRRRNni5tKQI9PBAdI6MP8nQ==}
-    engines: {node: '>=6'}
-    requiresBuild: true
-    dependencies:
-      '@fortawesome/fontawesome-common-types': 6.4.0
     dev: false
 
   /@fullcalendar/common/5.11.4:
@@ -2831,6 +2746,7 @@ packages:
     resolution: {integrity: sha512-rLVtIfbwyur2iFKykP2w0pl/1unw26b5td16d5xMgp7/yjTHomkyxPYChFoCr/FtEX1lN9wY6lFj1qvKdS5kDw==}
     dependencies:
       '@types/react': 17.0.52
+    dev: true
 
   /@types/react-is/17.0.3:
     resolution: {integrity: sha512-aBTIWg1emtu95bLTLx0cpkxwGW3ueZv71nE2YFBpL8k/z5czEW8yYpOo8Dp+UUAFAtKwNaOsh/ioSeQnWlZcfw==}
