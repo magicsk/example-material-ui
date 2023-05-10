@@ -209,7 +209,7 @@ const routes: RouteObject[] = [
       { path: 'resetpassword', element: <ResetPWView /> },
       { path: 'signup', element: <SignupWithEmail /> },
       { path: '404', element: <NotFoundView /> },
-      { path: '/', element: <Navigate to="/app/vak_smena" /> },
+      // { path: '/', element: <Navigate to="/app/vak_smena" /> },
       { path: '*', element: <NotFoundView /> },
     ],
   },
